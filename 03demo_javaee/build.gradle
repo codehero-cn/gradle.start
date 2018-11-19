@@ -1,0 +1,25 @@
+apply plugin :'war'
+apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'   //引入getty
+
+//webAppDirName = 'webfiles'  //指定webapp目录
+war{
+    from 'static'    //将'static'文件夹下的内容添加到war包中。
+}
+
+
+dependencies {
+    runtime 'javax.servlet.jsp.jstl:jstl:1.2'
+    providedCompile  'javax.servlet:javax.servlet-api:3.1.0'
+}
+
+
+
+gretty {  //此处配置会影响javax.servlet-api的版本
+    httpPort = 100  // 端口默认8080
+    // serlvetContainer 支持 jetty7/8/9，tomcat7/8
+    // contextPath 设置根路径，默认为项目名称
+    //servletContainer = 'tomcat8'
+    servletContainer = 'jetty9'  //jetty与tomcat有时会不兼容的情况发生
+    contextPath = ''  //要么是'',要么是以"/"开头的一个目录,就是访问eg:http://localhost/contextPath 设置根路径，否则默认为项目名称
+    //contextConfigFile = '/jaee.basic/config/tomcat_context.xml' //可以配置tomcat,没实际用出来
+}

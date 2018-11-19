@@ -1,0 +1,4 @@
+apply from: rootProject.getRootDir().getAbsolutePath() + "/util/util.config.gradle"
+apply from: rootProject.getRootDir().getAbsolutePath() + "/util/util.ide.gradle"
+apply from: rootProject.getRootDir().getAbsolutePath() + "/util/util.properties.gradle"
+apply from: rootProject.getRootDir().getAbsolutePath() + "/util/util.version.gradle"

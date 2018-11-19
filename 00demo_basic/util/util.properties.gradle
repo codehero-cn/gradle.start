@@ -1,0 +1,11 @@
+//实验打印出gradle对象的属性等
+setDescription("myProject")
+println "Description of project $name:"+project.description
+println "In Root, gradle id is " +gradle.hashCode()
+println "Home Dir:" + gradle.gradleHomeDir
+println "User Home Dir:" + gradle.gradleUserHomeDir
+println "Parent: " + gradle.parent
+println project.rootDir                // /Users//GradleDemo
+println project.getBuildFile()         // /Users/GradleDemo/build.gradle
+println project.getBuildDir()          // /Users/GradleDemo/build
+

@@ -1,0 +1,61 @@
+allprojects{
+    group = '04demo'
+    version = '0.1'
+    repositories {
+        maven {url 'https://maven.aliyun.com/repository/public'}
+        jcenter()
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin:'java'
+    sourceCompatibility = 1.8
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        //导入本地的依赖包
+        compile fileTree(dir: 'libs', include: ['*.jar'])
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+    }
+    
+}
+project(':web'){
+    apply plugin: 'war'
+    apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+  
+    dependencies{
+        compile (project(':service'))
+        compile 'org.springframework:spring-context:4.2.4.RELEASE'
+        compile 'org.springframework:spring-webmvc:4.2.4.RELEASE'
+        compile 'org.springframework:spring-orm:4.2.4.RELEASE'
+    }
+    gretty {
+
+        httpPort = 1000  // 端口默认8080
+        servletContainer = 'jetty9'
+        contextPath = ''
+    }
+}
+
+project(':service'){
+    dependencies{
+        compile (project(":repository"))
+    }
+}
+project(':repository'){
+    dependencies{
+        compile (project(":model"))
+        compile 'org.springframework:spring-context:4.2.4.RELEASE'
+        compile 'com.alibaba:fastjson:1.2.33'
+        
+    }
+}
+project(':model'){
+    dependencies{
+        compile (project(":common"))
+    }
+}
+project(':common'){
+}

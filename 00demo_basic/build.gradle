@@ -1,0 +1,14 @@
+//apply from:rootProject.getRootDir().getAbsolutePath()+"/utils.gradle"   //引入自定义gradle脚本
+apply from: rootProject.getRootDir().getAbsolutePath() + "/util/libraries.gradle"
+apply from: rootProject.getRootDir().getAbsolutePath() + "/task/libraries.gradle"
+
+allprojects {
+    repositories {
+        //aliyun的central仓和jcenter仓的聚合仓  https://help.aliyun.com/document_detail/102512.html
+        maven {url 'https://maven.aliyun.com/repository/public'}
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+    }
+}

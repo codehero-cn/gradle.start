@@ -1,0 +1,29 @@
+task helloworld(group:'testGroup',description:'desc'){  //指定一个testGroup Group，下面doLast可以使用<<方法代替.
+    /*通过setter方法来设置属性
+    group = 'testGroup'
+    description = 'desc' 
+     */
+    doLast{
+        println "hello world"
+    }
+}
+
+//定义Task依赖
+task first {
+    println 'my name is first task'
+}
+task second {
+    println "my name is second task"
+}
+task three (dependsOn: [second, first]) {  //注意：dependsOn: [second, first] 依赖的task没有先后顺序
+    doLast {
+        //  println 'hello word'  
+        logger.quiet "test Logger"
+    }
+}
+
+three.doFirst{println "first action"}  //此法可用于在task增加动作
+three.doLast{println "Last action"}  //此法可用于在task增加动作
+
+//终结器task
+//first.finalizedBy second    

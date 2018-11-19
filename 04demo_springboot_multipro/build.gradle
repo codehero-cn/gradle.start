@@ -1,0 +1,77 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.6.RELEASE'
+    }
+    repositories {
+        maven {url 'https://maven.aliyun.com/repository/public'}
+        maven { url "https://repo.spring.io/milestone" }
+        mavenCentral()
+        jcenter()
+        mavenLocal()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+allprojects {
+    repositories {
+        maven {url 'https://maven.aliyun.com/repository/public'}
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+    }
+}
+
+subprojects {
+    group = "superfavo"
+    version '0.0.1-SNAPSHOT'
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+    ext {
+        springBootVersion = '2.1.6.RELEASE'
+    }
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+  
+
+    dependencies {
+        compile 'org.slf4j:slf4j-api:1.7.25'
+        testCompile 'junit:junit:4.12'
+       
+    }
+}
+
+project("webapi"){
+    
+    dependencies{
+        compile(project(":service"))
+        compile(project(":common"))
+    }
+}
+project("service") {
+    
+    dependencies {
+        compile(project(":common"))
+        compile(project(":dao"))
+    }
+}
+
+project("dao") {
+    
+    dependencies {
+        compile(project(":model"))
+        compile(project(":common"))
+    }
+}
+
+project("common"){
+    description = "The common module of metrics project"
+    dependencies{
+    }
+}

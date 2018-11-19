@@ -1,0 +1,1 @@
+apply from: rootProject.getRootDir().getAbsolutePath() + "/util/util.doc_copy.gradle"

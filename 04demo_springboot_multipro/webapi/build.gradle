@@ -1,0 +1,46 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.6.RELEASE'
+    }
+    repositories {
+        maven {url 'https://maven.aliyun.com/repository/public'}
+        maven { url "https://repo.spring.io/milestone" }
+        mavenCentral()
+        jcenter()
+        mavenLocal()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+
+repositories {
+    maven { url "https://repo.spring.io/milestone" }
+    mavenCentral()
+}
+
+jar{
+    baseName ="demo-web"
+    version ="0.0.1-SNAPSHOT"
+}
+
+//这里一定得要。在多模块下，不然编译失败，因为不会把信赖模块给打包。没核实 
+/*
+jar {
+    enabled = true
+}
+
+bootJar {
+    classifier = 'app'
+}
+*/
+
+dependencies {
+    compile 'io.springfox:springfox-swagger2:2.9.2'
+    compile 'io.springfox:springfox-swagger-ui:2.9.2'
+    compile ('org.springframework.boot:spring-boot-starter-thymeleaf')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

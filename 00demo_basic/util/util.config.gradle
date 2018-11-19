@@ -1,0 +1,17 @@
+//手动建立包装器任务，任务名字也可以不是wrapper,任何名字都可以,运行后会影响gradle/文件夹,可用于升级包装器
+//5.2.1版本好像已经将wrapper内置为1 个task了，所以不能再取名wrapper
+
+task wrapper1 (type:Wrapper){
+    gradleVersion = '5.4.1'   //指定版本
+    //distributionUrl = 'http://foo.com/gradle/dists'  获取gradle包装器的URL
+    //distributionPath = 'gradle-dists'  包装器被解压缩后存放的相对路径
+}
+/*没用起来
+project.ext.myProp = 'myValue'
+ext{
+    someOtherProp = 123
+}
+assert myProp == 'myValue'
+println project.someOtherProp  
+ext.someOtherProp = 567
+*/ 

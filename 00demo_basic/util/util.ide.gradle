@@ -1,0 +1,16 @@
+//自动生成IDE的项目文件，无需再手动的将源代码导入到你的IDE中去了。
+//在命令行中输入gradle eclipse就可以生成eclipse的项目文件，直接使用eclipse打开生成的项目文件即可。
+apply plugin: 'eclipse'
+
+
+//自动生成Intellij的项目文件，需要使用idea插件。
+//命令行下输入gradle idea，就会生成Intellij的项目文件
+//gradle cleanIdea idea可以清除已有的Intellij项目文件。
+apply plugin: 'idea'
+
+/*
+    .ipr Intellij工程文件
+    .iml Intellij 模块文件
+    .iws Intellij 工作区文件
+ */
+

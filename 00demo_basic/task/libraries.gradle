@@ -1,0 +1,1 @@
+apply from: rootProject.getRootDir().getAbsolutePath() + "/task/task.basic.gradle"

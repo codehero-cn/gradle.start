@@ -1,0 +1,6 @@
+rootProject.name = "01demo_projectlayer"
+
+include  'sub1'
+include  'sub2'
+include  'sub3'
+

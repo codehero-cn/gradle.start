@@ -1,0 +1,4 @@
+rootProject.name = '02demo_projectflat' //默认配置
+includeFlat 'sub' //增加配置，指明了引用关系
+//includeFlat，平级引用
+//include， 子模块引用

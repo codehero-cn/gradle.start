@@ -1,0 +1,47 @@
+apply plugin: 'java'
+apply from: rootProject.getRootDir().getAbsolutePath() + "/util/libraries.gradle"
+version=0.2  //build/libs/*.jar  jar包会带上版本号
+jar{
+    manifest{
+        attributes 'Main-Class':  'HelloWorld'
+    }
+}
+//设置utf-8编码
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+//指定java编译器版本
+sourceCompatibility=1.8  //版本要与环境变量中JAVA_HOME的版本一致,否则 警告: [options] 未与 -source 1.7 一起设置引导类路径
+targetCompatibility=1.8
+
+//buildDir = 'out'  //改变项目输出属性(路径)到out目录   
+repositories {
+    jcenter()
+    mavenCentral()    //配置对Maven Central2仓库http://repol.maven.org/maven2访问的快捷方式
+    //flatDir()  扁平目录仓库  
+    // 自定义库地址
+    //maven { url 'http://localhost:8081/nexus/content/groups/public' }       //eleven：url那里有的用双引号。
+
+}
+//源码位置设置 
+sourceSets{
+    main{
+        java{
+            srcDirs = ['src/main/java','srcset/main/java'] //设置了sourceSets则原来默认项目结构失效，也要设置在这里
+        }
+    }
+    test{
+        java{
+            srcDirs=['src/main/java','srcset/main/test']
+        }
+    }
+}
+
+//buildDir = 'out'  项目输出目录  
+dependencies {
+    //compile fileTree(dir:'lib',include:['*.jar'])  //还有的目录src/main/webapp/WEB-INF/lib
+    compile 'log4j:log4j:1.2.17'   //顺序是group,name,version
+    //providedCompile  //表示该依赖在编译时需要,但是由运行时环境提供,比如javax.servlet.HttpServlet用于web开发时
+    testCompile 'junit:junit:4.11'
+    //exclude可以用来排除依赖，如果依赖元数据有问题。
+}
